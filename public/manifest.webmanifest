@@ -1,7 +1,8 @@
 {
-  "name": "SINTA",
-  "short_name": "SINTA",
-  "start_url": "/",
+  "name": "Rota Ofídica",
+  "short_name": "Rota Ofídica",
+  "start_url": "/Rota-Ofidica-MVP/#/",
+  "scope": "/Rota-Ofidica-MVP/",
   "display": "standalone",
   "background_color": "#F7F8F5",
   "theme_color": "#164A3A",
