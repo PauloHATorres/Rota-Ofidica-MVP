@@ -1,0 +1,10 @@
+{
+  "name": "SINTA",
+  "short_name": "SINTA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F8F5",
+  "theme_color": "#164A3A",
+  "lang": "pt-BR",
+  "description": "Apoio à identificação de risco e encaminhamento em acidentes ofídicos."
+}
