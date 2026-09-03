@@ -1,0 +1,360 @@
+/* =========================================================
+   ROTA OFÍDICA — HEADER
+   ========================================================= */
+
+.rota-header {
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border-bottom: 1px solid #e4e8e5;
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+
+.rota-header-inner {
+  width: min(100%, 1120px);
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+.rota-header-mobile {
+  min-height: 88px;
+
+  padding: 0 18px;
+
+  display: grid;
+
+  grid-template-columns:
+    82px
+    minmax(0, 1fr)
+    54px;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+/* Laterais */
+
+.rota-header-mobile-side {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.rota-header-mobile-left {
+  justify-content: flex-start;
+}
+
+
+.rota-header-mobile-right {
+  justify-content: flex-end;
+}
+
+
+/* FMVZ */
+
+.rota-header-fmvz-mobile {
+  width: 78px;
+
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* Rota Ofídica */
+
+.rota-header-main-brand {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+
+.rota-header-rota-mobile {
+  width: 142px;
+
+  max-width: 100%;
+
+  height: 61px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* SINTA */
+
+.rota-header-sinta-mobile {
+  width: 44px;
+  height: 44px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+.rota-header-desktop {
+  display: none;
+}
+
+
+/* =========================================================
+   CELULARES MENORES
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+  .rota-header-mobile {
+    min-height: 82px;
+
+    padding: 0 14px;
+
+    grid-template-columns:
+      72px
+      minmax(0, 1fr)
+      46px;
+
+    gap: 8px;
+  }
+
+
+  .rota-header-fmvz-mobile {
+    width: 68px;
+  }
+
+
+  .rota-header-rota-mobile {
+    width: 130px;
+
+    height: 56px;
+  }
+
+
+  .rota-header-sinta-mobile {
+    width: 39px;
+    height: 39px;
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 701px) {
+
+  .rota-header-mobile {
+    display: none !important;
+  }
+
+
+  .rota-header-desktop {
+    min-height: 86px;
+
+    padding: 0 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 28px;
+  }
+
+
+  /* Marcas */
+
+  .rota-header-desktop-brands {
+    min-width: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+  }
+
+
+  .rota-header-fmvz-desktop {
+    width: 122px;
+
+    height: 52px;
+
+    display: block;
+
+    object-fit: contain;
+  }
+
+
+  .rota-header-divider {
+    flex: 0 0 auto;
+
+    width: 1px;
+    height: 36px;
+
+    background: #e4e8e5;
+  }
+
+
+  .rota-header-rota-link {
+    display: flex;
+
+    align-items: center;
+
+    text-decoration: none;
+  }
+
+
+  .rota-header-rota-desktop {
+    width: 138px;
+
+    height: 52px;
+
+    display: block;
+
+    object-fit: contain;
+  }
+
+
+  .rota-header-sinta-desktop {
+    width: 48px;
+    height: 48px;
+
+    display: block;
+
+    object-fit: contain;
+  }
+
+
+  /* Navegação */
+
+  .rota-header-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+  }
+
+
+  .rota-header-nav-link {
+    position: relative;
+
+    padding: 9px 0;
+
+    color: #5e6662;
+
+    font-size: 0.94rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+      color 0.18s ease;
+  }
+
+
+  .rota-header-nav-link:hover {
+    color: #164a3a;
+  }
+
+
+  .rota-header-nav-link.active {
+    color: #164a3a;
+  }
+
+
+  .rota-header-nav-link.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 2px;
+
+    background: #178a57;
+
+    border-radius: 999px;
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP MENOR / NOTEBOOK
+   ========================================================= */
+
+@media (min-width: 701px) and (max-width: 950px) {
+
+  .rota-header-desktop {
+    gap: 18px;
+  }
+
+
+  .rota-header-fmvz-desktop {
+    width: 100px;
+  }
+
+
+  .rota-header-rota-desktop {
+    width: 120px;
+  }
+
+
+  .rota-header-sinta-desktop {
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .rota-header-desktop-brands {
+    gap: 11px;
+  }
+
+
+  .rota-header-nav {
+    gap: 18px;
+  }
+
+
+  .rota-header-nav-link {
+    font-size: 0.87rem;
+  }
+
+}
