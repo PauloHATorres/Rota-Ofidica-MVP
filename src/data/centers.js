@@ -147,7 +147,7 @@ export const centers = [
 
     city: 'Angatuba, SP',
 
-    aaddress: 'Praça Levi Lisboa, 1202 - Centro, Angatuba - SP',
+    address: 'Praça Levi Lisboa, 1202 - Centro, Angatuba - SP',
 
     phone: '(15) 3255-1055 / 3255-1122',
 
