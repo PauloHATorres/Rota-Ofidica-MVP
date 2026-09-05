@@ -82,6 +82,17 @@ export default function Inicio() {
   ] = useState('');
 
 
+  /*
+    Controla o pequeno menu mostrado quando
+    o usuário toca em "Trocar imagem".
+  */
+
+  const [
+    showReplaceOptions,
+    setShowReplaceOptions
+  ] = useState(false);
+
+
   // =========================================================
   // IA
   // =========================================================
@@ -391,10 +402,10 @@ export default function Inicio() {
             'inconclusivo_modelo2',
 
           title:
-            'Análise inconclusiva',
+            'Não foi possível obter uma identificação confiável pela imagem.',
 
           description:
-            'Não foi possível determinar o grupo da serpente com segurança. Procure o centro de referência antiofídico mais próximo para avaliação.',
+            'Em caso de acidente ou suspeita de acidente, procure o centro de referência antiofídico mais próximo para avaliação.',
 
           referralMode:
             'nearest',
@@ -650,23 +661,23 @@ export default function Inicio() {
     );
 
 
-    /*
-      Guarda o arquivo original para
-      salvar / compartilhar posteriormente.
-    */
-
     setSelectedFile(
       file
     );
 
 
-    /*
-      Limpa qualquer mensagem referente
-      à foto anterior.
-    */
-
     setPhotoActionMessage(
       ''
+    );
+
+
+    /*
+      Fecha o menu de troca após
+      uma nova imagem entrar.
+    */
+
+    setShowReplaceOptions(
+      false
     );
 
 
@@ -718,6 +729,32 @@ export default function Inicio() {
 
     event.target.value =
       '';
+  }
+
+
+  // =========================================================
+  // TROCAR IMAGEM
+  // =========================================================
+
+  function replaceWithCamera() {
+
+    setShowReplaceOptions(
+      false
+    );
+
+
+    cameraRef.current?.click();
+  }
+
+
+  function replaceWithGallery() {
+
+    setShowReplaceOptions(
+      false
+    );
+
+
+    fileRef.current?.click();
   }
 
 
@@ -890,13 +927,6 @@ export default function Inicio() {
 
     try {
 
-      /*
-        Web Share API.
-
-        Primeiro verificamos se o navegador
-        suporta compartilhamento.
-      */
-
       if (
         typeof navigator.share !==
         'function'
@@ -911,11 +941,6 @@ export default function Inicio() {
         return;
       }
 
-
-      /*
-        Verifica se o navegador aceita
-        arquivos no compartilhamento.
-      */
 
       if (
         typeof navigator.canShare ===
@@ -957,11 +982,6 @@ export default function Inicio() {
 
 
     } catch (shareError) {
-
-      /*
-        AbortError significa apenas que
-        o usuário fechou a tela de compartilhamento.
-      */
 
       if (
         shareError?.name ===
@@ -1017,18 +1037,6 @@ export default function Inicio() {
       userLocation,
     ]);
 
-
-  /*
-    Na tela inicial mostramos no máximo
-    3 unidades.
-
-    Com localização:
-      ordenadas pela distância.
-
-    Sem localização:
-      unidades compatíveis,
-      sem afirmar qual é a mais próxima.
-  */
 
   const visibleCenters =
     recommendedCenters.slice(
@@ -1217,15 +1225,11 @@ export default function Inicio() {
                 />
 
 
-                <button
-                  type="button"
-                  disabled={
-                    analysisStatus ===
-                    'analyzing'
-                  }
-                  onClick={() =>
-                    fileRef.current?.click()
-                  }
+                {/* ===========================================
+                    TROCAR IMAGEM
+                   =========================================== */}
+
+                <div
                   style={{
 
                     position:
@@ -1237,48 +1241,244 @@ export default function Inicio() {
                     bottom:
                       '14px',
 
+                    zIndex:
+                      5,
+
                     display:
-                      'inline-flex',
+                      'flex',
+
+                    flexDirection:
+                      'column',
 
                     alignItems:
-                      'center',
+                      'flex-end',
 
                     gap:
-                      '7px',
-
-                    border:
-                      'none',
-
-                    borderRadius:
-                      '999px',
-
-                    padding:
-                      '10px 14px',
-
-                    background:
-                      'rgba(255,255,255,0.95)',
-
-                    color:
-                      '#164A3A',
-
-                    fontWeight:
-                      700,
-
-                    cursor:
-                      'pointer',
-
-                    boxShadow:
-                      '0 4px 14px rgba(0,0,0,0.14)',
+                      '8px',
                   }}
                 >
 
-                  <RefreshCw
-                    size={17}
-                  />
 
-                  Trocar imagem
+                  {/* =========================================
+                      MENU COM AS DUAS OPÇÕES
+                     ========================================= */}
 
-                </button>
+                  {
+                    showReplaceOptions
+                    &&
+                    (
+                      <div
+                        style={{
+
+                          display:
+                            'flex',
+
+                          flexDirection:
+                            'column',
+
+                          gap:
+                            '7px',
+
+                          padding:
+                            '8px',
+
+                          borderRadius:
+                            '16px',
+
+                          background:
+                            'rgba(255,255,255,0.97)',
+
+                          boxShadow:
+                            '0 6px 20px rgba(0,0,0,0.18)',
+                        }}
+                      >
+
+
+                        <button
+                          type="button"
+                          onClick={
+                            replaceWithCamera
+                          }
+                          style={{
+
+                            display:
+                              'flex',
+
+                            alignItems:
+                              'center',
+
+                            gap:
+                              '8px',
+
+                            border:
+                              'none',
+
+                            borderRadius:
+                              '12px',
+
+                            padding:
+                              '10px 13px',
+
+                            background:
+                              '#164A3A',
+
+                            color:
+                              '#FFFFFF',
+
+                            fontWeight:
+                              700,
+
+                            cursor:
+                              'pointer',
+
+                            whiteSpace:
+                              'nowrap',
+                          }}
+                        >
+
+                          <Camera
+                            size={18}
+                            strokeWidth={2}
+                          />
+
+                          Tirar outra foto
+
+                        </button>
+
+
+                        <button
+                          type="button"
+                          onClick={
+                            replaceWithGallery
+                          }
+                          style={{
+
+                            display:
+                              'flex',
+
+                            alignItems:
+                              'center',
+
+                            gap:
+                              '8px',
+
+                            border:
+                              '1px solid rgba(22,74,58,0.18)',
+
+                            borderRadius:
+                              '12px',
+
+                            padding:
+                              '10px 13px',
+
+                            background:
+                              '#FFFFFF',
+
+                            color:
+                              '#164A3A',
+
+                            fontWeight:
+                              700,
+
+                            cursor:
+                              'pointer',
+
+                            whiteSpace:
+                              'nowrap',
+                          }}
+                        >
+
+                          <ImagePlus
+                            size={18}
+                            strokeWidth={2}
+                          />
+
+                          Escolher da galeria
+
+                        </button>
+
+
+                      </div>
+                    )
+                  }
+
+
+                  {/* =========================================
+                      BOTÃO PRINCIPAL
+                     ========================================= */}
+
+                  <button
+                    type="button"
+                    disabled={
+                      analysisStatus ===
+                      'analyzing'
+                    }
+                    onClick={() =>
+                      setShowReplaceOptions(
+                        (current) =>
+                          !current
+                      )
+                    }
+                    style={{
+
+                      display:
+                        'inline-flex',
+
+                      alignItems:
+                        'center',
+
+                      gap:
+                        '7px',
+
+                      border:
+                        'none',
+
+                      borderRadius:
+                        '999px',
+
+                      padding:
+                        '10px 14px',
+
+                      background:
+                        'rgba(255,255,255,0.95)',
+
+                      color:
+                        '#164A3A',
+
+                      fontWeight:
+                        700,
+
+                      cursor:
+                        analysisStatus ===
+                        'analyzing'
+                          ?
+                          'not-allowed'
+                          :
+                          'pointer',
+
+                      opacity:
+                        analysisStatus ===
+                        'analyzing'
+                          ?
+                          0.7
+                          :
+                          1,
+
+                      boxShadow:
+                        '0 4px 14px rgba(0,0,0,0.14)',
+                    }}
+                  >
+
+                    <RefreshCw
+                      size={17}
+                    />
+
+                    Trocar imagem
+
+                  </button>
+
+
+                </div>
 
               </>
 
@@ -1489,7 +1689,9 @@ export default function Inicio() {
               <button
                 type="button"
                 className="location-button"
-                onClick={requestLocation}
+                onClick={
+                  requestLocation
+                }
                 disabled={
                   locationStatus ===
                   'loading'
@@ -1889,10 +2091,6 @@ export default function Inicio() {
 
         {/* =================================================
             FOTO PARA O ATENDIMENTO
-
-            IMPORTANTE:
-            esta função aparece DEPOIS dos centros.
-            Portanto não interrompe o encaminhamento.
            ================================================= */}
 
         {
