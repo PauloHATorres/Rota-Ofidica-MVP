@@ -591,6 +591,22 @@ export default function Sobre() {
 
           </div>
 
+
+          <div className="rota-about-team-divider" />
+
+
+          <div className="rota-about-team-professors">
+
+            <span>
+              Colaboradores
+            </span>
+
+            <strong>
+              Prof. Dr. Daniel Sá Freire Lamarca — FCA/UNESP, Botucatu
+            </strong>
+
+          </div>
+
         </div>
 
       </section>
