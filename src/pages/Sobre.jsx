@@ -164,11 +164,11 @@ export default function Sobre() {
               </span>
 
               <strong>
-                Wanderson Adriano Biscola Pereira
+                Prof. Dr. Wanderson Adriano Biscola Pereira
               </strong>
 
               <strong>
-                José Paes de Oliveira Filho
+                Prof. Dr. José Paes de Oliveira Filho
               </strong>
 
             </div>
@@ -582,11 +582,11 @@ export default function Sobre() {
             </span>
 
             <strong>
-              Wanderson Adriano Biscola Pereira
+              Prof. Dr. Wanderson Adriano Biscola Pereira
             </strong>
 
             <strong>
-              José Paes de Oliveira Filho
+              Prof. Dr. José Paes de Oliveira Filho
             </strong>
 
           </div>
